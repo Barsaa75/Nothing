@@ -1,5 +1,5 @@
 import React from "react";
-export const RecentLink = ({ data, shortUrl }) => {
+export const RecentLink = ({ data, shortUrl, longUrl }) => {
   const styles = {
     container: {
       width: "291px",
@@ -49,7 +49,7 @@ export const RecentLink = ({ data, shortUrl }) => {
       <div style={styles.content}>
         <div style={styles.key}>Богино холбоос:</div>
         <div style={styles.copyContainer}>
-          <div style={styles.value}>{shortUrl}</div>
+          <div style={styles.value}>{`localhost:3000/${shortUrl}`}</div>
           <button style={styles.copyButton}>Хуулж авах</button>
         </div>
       </div>

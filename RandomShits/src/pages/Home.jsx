@@ -72,7 +72,6 @@ export const Home = () => {
     const res = await instance.post("/links", {
       LongUrl: link,
     });
-
     setUrl(res.data.data.ShortUrl);
   };
   return (
