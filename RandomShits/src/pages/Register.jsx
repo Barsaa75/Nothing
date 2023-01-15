@@ -3,7 +3,7 @@ import HowItWorks from "../components/HowItWorks";
 import logo from "../assets/boginoo-logo.svg";
 import credit from "../assets/credit.svg";
 
-function Login() {
+function Register() {
   const styles = {
     headerContainer: {
       position: "absolute",
@@ -107,12 +107,12 @@ function Login() {
         <input
           style={styles.input}
           placeholder="name@mail.domain"
-          type="text"
+          type="email"
         />
         <div>Нууц үг</div>
-        <input style={styles.input} placeholder="••••••••••" type="text" />
+        <input style={styles.input} placeholder="••••••••••" type="password" />
         <div>Нууц үгээ давтна уу?</div>
-        <input style={styles.input} placeholder="••••••••••" type="text" />
+        <input style={styles.input} placeholder="••••••••••" type="password" />
         <div style={styles.flexContent}></div>
         <button style={styles.nevtrehBtn}>Бүртгүүлэх </button>
       </div>
@@ -120,4 +120,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

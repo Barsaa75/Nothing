@@ -24,6 +24,8 @@ export const RecentLink = ({ data, shortUrl, longUrl }) => {
       fontFamily: "Ubuntu",
       fontWeight: "400",
       fontSize: "20px",
+      overflowX: "scroll",
+      float: "bottom"
     },
     copyContainer: {
       width: "100%",
