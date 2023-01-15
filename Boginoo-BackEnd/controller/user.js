@@ -22,7 +22,7 @@ export const user = async (req, res) => {
     if (user) {
       if (user.password !== password) {
         res.send({
-          data: "fucked up",
+          data: "Done",
         });
       }
       res.status(200).send({
@@ -31,7 +31,7 @@ export const user = async (req, res) => {
       });
     } else {
       res.send({
-        data: "sadasda",
+        data: "Connected",
       });
     }
   } catch (error) {
