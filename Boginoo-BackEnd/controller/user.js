@@ -1,51 +1,8 @@
 import User from "../model/User.js";
 
-export const users = async (req, res) => {
+export const getAllUser = async (req, res) => {
   try {
-    const users = await User.find({});
-    res.status(200).send({
-      success: true,
-      data: users,
-    });
-  } catch (error) {
-    res.status(400).send({
-      success: false,
-      data: error.message,
-    });
-  }
-};
-
-export const user = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email: email });
-    if (user) {
-      if (user.password !== password) {
-        res.send({
-          data: "Done",
-        });
-      }
-      res.status(200).send({
-        success: true,
-        data: user,
-      });
-    } else {
-      res.send({
-        data: "Connected",
-      });
-    }
-  } catch (error) {
-    res.status(400).send({
-      success: false,
-      data: error.message,
-    });
-  }
-};
-
-export const deleteUser = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const user = await User.findByIdAndRemove({ _id: id });
+    const user = await User.find({});
     res.status(200).send({
       success: true,
       data: user,
@@ -58,10 +15,10 @@ export const deleteUser = async (req, res) => {
   }
 };
 
-export const getUserById = async (req, res) => {
+export const getUser = async (req, res) => {
+  const { id } = req.params;
   try {
-    const { id } = req.params;
-    const user = await User.findById({ _id: id });
+    const user = await User.findById(id);
     res.status(200).send({
       success: true,
       data: user,
@@ -81,6 +38,45 @@ export const createUser = async (req, res) => {
       success: true,
       data: user,
     });
+  } catch (error) {
+    res.status(400).send({
+      success: false,
+      data: error.message,
+    });
+  }
+};
+export const login = async (req, res) => {
+  try {
+    const user = await User.findOne({
+      username: req.body.username,
+    });
+
+    if (req.body.password !== user.password) {
+      throw new Error("Нэр эсвэл нууц үг таарсангүй");
+    }
+    res.status(200).send({
+      success: true,
+      data: user,
+    });
+  } catch (error) {
+    res.status(400).send({
+      success: false,
+      data: error.message,
+    });
+  }
+};
+export const forget = async (req, res) => {
+  try {
+    const user = await User.findOne({
+      username: req.body.username,
+    });
+
+    if (req.body.username === user.username) {
+      res.status(200).send({
+        success: true,
+        data: user.password,
+      });
+    }
   } catch (error) {
     res.status(400).send({
       success: false,
