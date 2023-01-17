@@ -3,10 +3,10 @@ import HowItWorks from "../components/HowItWorks";
 import logo from "../assets/boginoo-logo.svg";
 import credit from "../assets/credit.svg";
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { instance } from "../App"
+import { instance } from "../App";
 
 function Register() {
   const usernameValue = useRef();
@@ -17,15 +17,12 @@ function Register() {
   const createUser = async () => {
     if (passwordReValue.current.value === passwordValue.current.value) {
       try {
-        await instance.post("/boginoo", {
+        await instance.post("/user/register", {
           username: usernameValue.current.value,
           password: passwordValue.current.value,
         });
-        toast("амжилттай бүртгэгдлээ");
         navigate(`/Login`);
-      } catch (error) {
-        toast("Amjiltgui");
-      }
+      } catch (error) { }
     } else {
       toast("Нууц үг таарсангүй");
     }
@@ -120,6 +117,7 @@ function Register() {
   return (
     <div>
       <div style={styles.headerContainer}>
+        <ToastContainer />
         <div style={{ marginRight: "100px" }}>
           <HowItWorks />
         </div>
@@ -135,15 +133,27 @@ function Register() {
           style={styles.input}
           placeholder="name@mail.domain"
           type="email"
+          ref={usernameValue}
         />
         <div>Нууц үг</div>
-        <input ref={passwordValue} style={styles.input} placeholder="••••••••••" type="password" />
+        <input
+          ref={passwordValue}
+          style={styles.input}
+          placeholder="••••••••••"
+          type="password"
+        />
         <div>Нууц үгээ давтна уу?</div>
-        <input ref={passwordReValue} style={styles.input} placeholder="••••••••••" type="password" />
+        <input
+          ref={passwordReValue}
+          style={styles.input}
+          placeholder="••••••••••"
+          type="password"
+        />
         <div style={styles.flexContent}></div>
-        <button onClick={createUser} style={styles.nevtrehBtn}>Бүртгүүлэх </button>
+        <button onClick={createUser} style={styles.nevtrehBtn}>
+          Бүртгүүлэх{" "}
+        </button>
       </div>
-      <ToastContainer />
     </div>
   );
 }

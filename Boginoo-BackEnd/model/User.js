@@ -3,12 +3,12 @@ import mongoose from "mongoose";
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: [true, "нэвтрэх нэрээ оруулна уу"],
+    // required: [true, "нэвтрэх нэрээ оруулна уу"],
   },
   password: {
     type: String,
-    required: [true, "нууц үгээ оруулна уу"],
-    minLength: [8, "хэтэрхий богино байна , 8 н оронтой байна"],
+    // required: [true, "нууц үгээ оруулна уу"],
+    // minLength: [8, "хэтэрхий богино байна , 8 н оронтой байна"],
   },
 });
 
