@@ -8,8 +8,94 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { instance } from "../App";
 
+const styles = {
+  headerContainer: {
+    position: "absolute",
+    width: "100vw",
+    height: "10vh",
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  container: {
+    width: "100vw",
+    height: "35vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+  },
+  logo: {
+    width: "184px",
+    height: "118px",
+    backgroundImage: `url(${logo})`,
+  },
+  bottomContainer: {
+    width: "789px",
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  credit: {
+    position: "absolute",
+    bottom: "50px",
+    width: "225px",
+    height: "44px",
+    backgroundImage: `url(${credit})`,
+  },
+  inputContainer: {
+    display: "flex",
+    flexDirection: "column",
+    width: "100vw",
+    height: "auto",
+    zIndex: "1",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "15px",
+  },
+  input: {
+    height: "44px",
+    width: "381px",
+    borderRadius: "100px",
+    border: "1px solid #F0F0F0",
+  },
+  nevtrehTitle: {
+    font: "Ubuntu",
+    fontWeight: "700",
+    fontSize: "32px",
+    lineHeight: "36.77px",
+    alignItems: "center",
+    color: " #02B589",
+  },
+  nmgSana: {
+    fontFamily: "Ubuntu",
+    fontStyle: "normal",
+    fontWeight: "400",
+    fontSize: "16px",
+    lineHeight: "18px",
+    color: "#02B589",
+  },
+  nevtrehBtn: {
+    backgroundColor: "#02B589",
+    color: "#F0F0F0",
+    width: "383px",
+    height: "43px",
+    borderRadius: "100px",
+    border: "none",
+  },
+  flexContent: {
+    display: "flex",
+  },
+  nevtrehBtnTop: {
+    display: "flex",
+    gap: "8rem",
+  },
+  decoration: {
+    textDecoration: "none",
+    color: "black",
+  },
+};
 function Register() {
-  const usernameValue = useRef();
+  const emailValue = useRef();
   const passwordValue = useRef();
   const passwordReValue = useRef();
   const navigate = useNavigate();
@@ -18,7 +104,7 @@ function Register() {
     if (passwordReValue.current.value === passwordValue.current.value) {
       try {
         await instance.post("/user/register", {
-          username: usernameValue.current.value,
+          email: emailValue.current.value,
           password: passwordValue.current.value,
         });
         navigate(`/Login`);
@@ -26,93 +112,6 @@ function Register() {
     } else {
       toast("Нууц үг таарсангүй");
     }
-  };
-
-  const styles = {
-    headerContainer: {
-      position: "absolute",
-      width: "100vw",
-      height: "10vh",
-      display: "flex",
-      justifyContent: "flex-end",
-      alignItems: "center",
-    },
-    container: {
-      width: "100vw",
-      height: "35vh",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      flexDirection: "column",
-    },
-    logo: {
-      width: "184px",
-      height: "118px",
-      backgroundImage: `url(${logo})`,
-    },
-    bottomContainer: {
-      width: "789px",
-      display: "flex",
-      justifyContent: "space-between",
-    },
-    credit: {
-      position: "absolute",
-      bottom: "50px",
-      width: "225px",
-      height: "44px",
-      backgroundImage: `url(${credit})`,
-    },
-    inputContainer: {
-      display: "flex",
-      flexDirection: "column",
-      width: "100vw",
-      height: "auto",
-      zIndex: "1",
-      justifyContent: "center",
-      alignItems: "center",
-      gap: "15px",
-    },
-    input: {
-      height: "44px",
-      width: "381px",
-      borderRadius: "100px",
-      border: "1px solid #F0F0F0",
-    },
-    nevtrehTitle: {
-      font: "Ubuntu",
-      fontWeight: "700",
-      fontSize: "32px",
-      lineHeight: "36.77px",
-      alignItems: "center",
-      color: " #02B589",
-    },
-    nmgSana: {
-      fontFamily: "Ubuntu",
-      fontStyle: "normal",
-      fontWeight: "400",
-      fontSize: "16px",
-      lineHeight: "18px",
-      color: "#02B589",
-    },
-    nevtrehBtn: {
-      backgroundColor: "#02B589",
-      color: "#F0F0F0",
-      width: "383px",
-      height: "43px",
-      borderRadius: "100px",
-      border: "none",
-    },
-    flexContent: {
-      display: "flex",
-    },
-    nevtrehBtnTop: {
-      display: "flex",
-      gap: "8rem",
-    },
-    decoration: {
-      textDecoration: "none",
-      color: "black",
-    },
   };
   return (
     <div>
@@ -133,7 +132,7 @@ function Register() {
           style={styles.input}
           placeholder="name@mail.domain"
           type="email"
-          ref={usernameValue}
+          ref={emailValue}
         />
         <div>Нууц үг</div>
         <input

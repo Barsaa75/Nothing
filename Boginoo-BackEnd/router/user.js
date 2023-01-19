@@ -4,17 +4,17 @@ import {
   getAllUser,
   getUser,
   login,
-  forget,
+  // forget,
 } from "../controller/user.js";
 import { checkToken } from "../middleware/middleware.js";
 const routerUser = express.Router();
 
 routerUser
   .all(checkToken)
-  .get("/boginoo", getAllUser)
+  .get("/", getAllUser)
   .post("/register", createUser)
   .post("/login", login)
-  .post("/forget", forget);
-routerUser.route("/boginoo/:id").get(getUser);
+  // .post("/forget", forget);
+routerUser.route("/:id").get(getUser);
 
 export default routerUser;

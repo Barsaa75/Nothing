@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import Links from "./pages/Links";
+import UserHome from "./pages/UserHome";
 
 export const instance = axios.create({
   baseURL: "http://localhost:8888",
@@ -20,6 +21,7 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/:shortUrl" element={<Links />} />
+        <Route path="/UserHome/:id" element={<UserHome />} />
       </Routes>
     </BrowserRouter>
   );

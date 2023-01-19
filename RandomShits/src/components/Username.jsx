@@ -1,6 +1,8 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
+
 const styles = {
-    howItWorks: {
+    Username: {
         color: "#02B589",
         fontFamily: "Ubuntu",
         fontWeight: "700",
@@ -9,11 +11,11 @@ const styles = {
         cursor: "pointer"
     },
 }
-
-function HowItWorks() {
+function Username() {
+    const { id } = useParams()
     return (
-        <div style={styles.howItWorks}>Хэрхэн ажилладаг вэ?</div>
+        <div style={styles.Username}>{id}</div>
     )
 }
 
-export default HowItWorks
+export default Username
