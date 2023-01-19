@@ -24,7 +24,7 @@ const styles = {
     fontWeight: "400",
     fontSize: "20px",
     overflowX: "scroll",
-    float: "bottom"
+    float: "bottom",
   },
   copyContainer: {
     width: "100%",
@@ -41,6 +41,7 @@ const styles = {
     marginLeft: "10px",
   },
 };
+
 export const RecentLink = ({ data, shortUrl, longUrl }) => {
   return (
     <div style={styles.container}>

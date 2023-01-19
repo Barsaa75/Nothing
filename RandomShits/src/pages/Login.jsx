@@ -2,7 +2,7 @@ import React from "react";
 import HowItWorks from "../components/HowItWorks";
 import logo from "../assets/boginoo-logo.svg";
 import credit from "../assets/credit.svg";
-import { Link } from "react-router-dom";
+import { json, Link } from "react-router-dom";
 import { useState } from "react";
 import { instance } from "../App";
 import { ToastContainer, toast } from "react-toastify";
@@ -93,7 +93,7 @@ const styles = {
     textDecoration: "none",
     color: "black",
   },
-}
+};
 function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -103,12 +103,17 @@ function Login() {
         email: email,
         password: password,
       });
-      console.log(res.data.data._id);
+      // window.localStorage.setItem("token", JSON.stringify(res.data.token));
+      try {
+        window.localStorage.setItem("token", JSON.stringify(res.data.token));
+      } catch (error) {
+        console.log(error.message);
+      }
       window.location.replace(`/UserHome/${res.data.data._id}`);
     } catch (error) {
       toast.error(error.response.data.error);
     }
-  }
+  };
 
   return (
     <div>
@@ -153,13 +158,11 @@ function Login() {
         </button>
         {/* </Link> */}
         <Link to="/Register">
-          <div style={styles.decoration}>
-            Шинэ хэрэглэгч бол энд дарна уу?
-          </div>
+          <div style={styles.decoration}>Шинэ хэрэглэгч бол энд дарна уу?</div>
         </Link>
       </div>
-    </div >
+    </div>
   );
-};
+}
 
 export default Login;

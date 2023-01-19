@@ -99,16 +99,18 @@ function Register() {
   const passwordValue = useRef();
   const passwordReValue = useRef();
   const navigate = useNavigate();
-
   const createUser = async () => {
     if (passwordReValue.current.value === passwordValue.current.value) {
       try {
-        await instance.post("/user/register", {
+        const res = await instance.post("/user/register", {
           email: emailValue.current.value,
           password: passwordValue.current.value,
         });
         navigate(`/Login`);
-      } catch (error) { }
+        console.log(res.data);
+      } catch (error) {
+        console.log(error.message);
+      }
     } else {
       toast("Нууц үг таарсангүй");
     }
@@ -126,7 +128,7 @@ function Register() {
         <div style={styles.logo}></div>
       </div>
       <div style={styles.inputContainer}>
-        <div style={styles.nevtrehTitle}>Нэвтрэх</div>
+        <div style={styles.nevtrehTitle}>Бүртгүүлэх</div>
         <div>Цахим хаяг</div>
         <input
           style={styles.input}
