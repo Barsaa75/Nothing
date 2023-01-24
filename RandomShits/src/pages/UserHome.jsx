@@ -75,7 +75,6 @@ export const UserHome = () => {
   const getData = async () => {
     const res = await instance.post("/links", {
       LongUrl: link,
-      token: JSON.parse(localStorage.getItem("token")),
     });
     setUrl(res.data.data.ShortUrl);
   };

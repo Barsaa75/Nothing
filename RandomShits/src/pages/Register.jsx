@@ -109,7 +109,7 @@ function Register() {
         navigate(`/Login`);
         console.log(res.data);
       } catch (error) {
-        console.log(error.message);
+        console.log(error);
       }
     } else {
       toast("Нууц үг таарсангүй");

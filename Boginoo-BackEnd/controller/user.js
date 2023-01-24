@@ -48,14 +48,17 @@ export const createUser = async (req, res) => {
 };
 export const login = async (req, res) => {
   try {
+    const { email, password } = req.body;
     const user = await User.findOne({
-      email: req.body.email,
+      email,
     });
     const token = jwt.sign({ user }, "T0PS3CR3T", { expiresIn: "1d" });
-
-    if (req.body.password !== user.password) {
-      throw new Error("Нэр эсвэл нууц үг таарсангүй");
+    const isMatch = await user.comparePassword(password);
+    console.log(isMatch);
+    if (!isMatch) {
+      res.send("fuck");
     }
+
     res.status(200).send({
       success: true,
       data: user,
