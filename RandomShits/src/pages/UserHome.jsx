@@ -73,14 +73,15 @@ export const UserHome = () => {
   const [email, setEmail] = useState();
   const params = useParams();
   const getData = async () => {
+
     const res = await instance.post("/links", {
       LongUrl: link,
+      token: JSON.parse(localStorage.getItem("token")),
     });
     setUrl(res.data.data.ShortUrl);
   };
   const getUser = async () => {
     const res = await instance.get(`/user/${params.id}`);
-    console.log(res);
     setEmail(res.data.data.email);
   };
   useEffect(() => {

@@ -1,11 +1,11 @@
-import express, { Router } from "express";
+import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import router from "./router/link.js";
 import dotenv from "dotenv";
 import routerUser from "./router/user.js";
-dotenv.config();
 
+dotenv.config();
 const app = express();
 const corsOption = {
   origin: "http://localhost:3000",

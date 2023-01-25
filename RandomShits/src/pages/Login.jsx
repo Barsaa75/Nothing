@@ -2,7 +2,7 @@ import React from "react";
 import HowItWorks from "../components/HowItWorks";
 import logo from "../assets/boginoo-logo.svg";
 import credit from "../assets/credit.svg";
-import { json, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { instance } from "../App";
 import { ToastContainer, toast } from "react-toastify";
@@ -103,7 +103,6 @@ function Login() {
         email: email,
         password: password,
       });
-      // window.localStorage.setItem("token", JSON.stringify(res.data.token));
       try {
         window.localStorage.setItem("token", JSON.stringify(res.data.token));
       } catch (error) {
