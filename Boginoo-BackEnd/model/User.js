@@ -1,17 +1,26 @@
 import bcrypt from "bcrypt";
 import mongoose from "mongoose";
 
-const UserSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    // required: [true, "нэвтрэх нэрээ оруулна уу"],
+const UserSchema = new mongoose.Schema(
+  {
+    email: {
+      type: String,
+      // required: [true, "нэвтрэх нэрээ оруулна уу"],
+    },
+    password: {
+      type: String,
+      // required: [true, "нууц үгээ оруулна уу"],
+      // minLength: [8, "хэтэрхий богино байна , 8 н оронтой байна"],
+    },
   },
-  password: {
-    type: String,
-    // required: [true, "нууц үгээ оруулна уу"],
-    // minLength: [8, "хэтэрхий богино байна , 8 н оронтой байна"],
-  },
+  { toJSON: { virtuals: true }, toObject: { virtuals: true } }
+);
+UserSchema.virtual("Links", {
+  ref: "Link",
+  localField: "_id",
+  foreignField: "user_id",
 });
+
 UserSchema.pre("save", async function (next) {
   try {
     const salt = await bcrypt.genSalt(10);

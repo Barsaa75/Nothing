@@ -71,12 +71,13 @@ export const UserHome = () => {
   const [link, setLink] = useState();
   const [url, setUrl] = useState();
   const [email, setEmail] = useState();
+  const [history, setHistory] = useState([]);
   const params = useParams();
   const getData = async () => {
-
     const res = await instance.post("/links", {
       LongUrl: link,
       token: JSON.parse(localStorage.getItem("token")),
+      user_id: JSON.parse(localStorage.getItem("user_id")),
     });
     setUrl(res.data.data.ShortUrl);
   };
@@ -84,9 +85,19 @@ export const UserHome = () => {
     const res = await instance.get(`/user/${params.id}`);
     setEmail(res.data.data.email);
   };
+  const getHistory = async () => {
+    const res = await instance.get("/links");
+    setHistory(
+      res.data.data.map((el) => {
+        return el.LongUrl;
+      })
+    );
+    console.log(res);
+  };
   useEffect(() => {
     getUser();
-  });
+    getHistory();
+  }, []);
   return (
     <>
       <LoggedHeader email={email} />
@@ -107,6 +118,18 @@ export const UserHome = () => {
           </div>
         </div>
         {link && <RecentLink data={link} shortUrl={url} />}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          width: "500px",
+          height: "100px",
+          overflowX: "scroll",
+          marginTop: "-100px",
+          flexDirection: "column",
+        }}
+      >
+        {history}
       </div>
     </>
   );

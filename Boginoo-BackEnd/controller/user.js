@@ -2,7 +2,7 @@ import User from "../model/User.js";
 import jwt from "jsonwebtoken";
 export const getAllUser = async (req, res) => {
   try {
-    const user = await User.find({});
+    const user = await User.find({}).populate("Links");
     res.status(200).send({
       success: true,
       data: user,

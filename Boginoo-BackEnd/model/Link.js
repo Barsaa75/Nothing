@@ -1,5 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { nanoid } from "nanoid";
+
 const LinkSchema = new mongoose.Schema({
   LongUrl: {
     type: String,
@@ -7,6 +8,11 @@ const LinkSchema = new mongoose.Schema({
   },
   ShortUrl: {
     type: String,
+  },
+  user_id: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
   },
 });
 LinkSchema.pre("save", function (next) {

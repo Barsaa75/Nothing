@@ -105,6 +105,10 @@ function Login() {
       });
       try {
         window.localStorage.setItem("token", JSON.stringify(res.data.token));
+        window.localStorage.setItem(
+          "user_id",
+          JSON.stringify(res.data.data._id)
+        );
       } catch (error) {
         console.log(error.message);
       }
@@ -156,8 +160,8 @@ function Login() {
           Нэвтрэх
         </button>
         {/* </Link> */}
-        <Link to="/Register">
-          <div style={styles.decoration}>Шинэ хэрэглэгч бол энд дарна уу?</div>
+        <Link style={styles.decoration} to="/Register">
+          <div>Шинэ хэрэглэгч бол энд дарна уу?</div>
         </Link>
       </div>
     </div>
