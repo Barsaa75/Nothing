@@ -34,7 +34,7 @@ export const getUser = async (req, res) => {
 export const createUser = async (req, res) => {
   try {
     const user = await User.create(req.body);
-    const token = jwt.sign({ ...user }, "T0PS3CR3T", { expiresIn: "1d" });
+    // const token = jwt.sign({ ...user }, "T0PS3CR3T", { expiresIn: "1d" });
     res.status(200).send({
       success: true,
       data: user,
@@ -56,14 +56,14 @@ export const login = async (req, res) => {
     const isMatch = await user.comparePassword(password);
     console.log(isMatch);
     if (!isMatch) {
-      res.send("fuck");
+      res.send("Ok");
+    } else {
+      res.status(200).send({
+        success: true,
+        data: user,
+        token: token,
+      });
     }
-
-    res.status(200).send({
-      success: true,
-      data: user,
-      token: token,
-    });
   } catch (error) {
     res.status(400).send({
       success: false,

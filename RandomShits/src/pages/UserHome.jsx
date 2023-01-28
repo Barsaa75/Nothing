@@ -127,6 +127,7 @@ export const UserHome = () => {
           overflowX: "scroll",
           marginTop: "-100px",
           flexDirection: "column",
+          overflowWrap: "break-word",
         }}
       >
         {history}

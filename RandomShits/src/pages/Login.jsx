@@ -112,6 +112,7 @@ function Login() {
       } catch (error) {
         console.log(error.message);
       }
+      console.log(res.data.data);
       window.location.replace(`/UserHome/${res.data.data._id}`);
     } catch (error) {
       toast.error(error.response.data.error);

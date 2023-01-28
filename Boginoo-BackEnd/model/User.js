@@ -12,6 +12,11 @@ const UserSchema = new mongoose.Schema(
       // required: [true, "нууц үгээ оруулна уу"],
       // minLength: [8, "хэтэрхий богино байна , 8 н оронтой байна"],
     },
+    role: {
+      type: String,
+      default: "normal",
+      enum: ["normal", "admin", "superAdmin"],
+    },
   },
   { toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
