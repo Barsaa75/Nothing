@@ -1,5 +1,5 @@
-import User from "../model/User";
-import Link from "../model/link";
+import User from "../model/User.js";
+import Link from "../model/link.js";
 
 export const AdminRole = async (req, res, next) => {
   try {

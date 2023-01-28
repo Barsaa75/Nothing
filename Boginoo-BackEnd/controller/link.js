@@ -66,7 +66,7 @@ export const findlink = async (req, res) => {
 export const superDelete = async (req, res) => {
   try {
     const { id } = req.params;
-    const url = await Link.findOneAndRemove({ _id: id });
+    const url = await Link.deleteOne({ _id: id });
     res.status(200).send({
       success: true,
       data: url,
