@@ -71,7 +71,6 @@ export const UserHome = () => {
   const [link, setLink] = useState();
   const [url, setUrl] = useState();
   const [email, setEmail] = useState();
-  const [history, setHistory] = useState([]);
   const params = useParams();
   const getData = async () => {
     const res = await instance.post("/links", {
@@ -85,18 +84,9 @@ export const UserHome = () => {
     const res = await instance.get(`/user/${params.id}`);
     setEmail(res.data.data.email);
   };
-  const getHistory = async () => {
-    const res = await instance.get("/links");
-    setHistory(
-      res.data.data.map((el) => {
-        return el.LongUrl;
-      })
-    );
-    console.log(res);
-  };
+
   useEffect(() => {
     getUser();
-    getHistory();
   }, []);
   return (
     <>
@@ -129,9 +119,7 @@ export const UserHome = () => {
           flexDirection: "column",
           overflowWrap: "break-word",
         }}
-      >
-        {history}
-      </div>
+      ></div>
     </>
   );
 };

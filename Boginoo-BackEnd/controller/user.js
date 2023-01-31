@@ -18,7 +18,7 @@ export const getAllUser = async (req, res) => {
 export const getUser = async (req, res) => {
   const { id } = req.params;
   try {
-    const user = await User.findById(id);
+    const user = await User.findById(id).populate("Links");
     res.status(200).send({
       success: true,
       data: user,

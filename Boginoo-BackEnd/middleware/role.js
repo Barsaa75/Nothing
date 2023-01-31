@@ -6,7 +6,7 @@ export const AdminRole = async (req, res, next) => {
     const { id } = req.params;
     const link = await Link.findById(id);
     const user = await User.findById(link.user_id);
-    if (user.role === "admin") {
+    if (user.role === "normal") {
       return next();
     } else {
       console.log("admin erh avna uu");

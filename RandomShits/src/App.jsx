@@ -23,7 +23,7 @@ function App() {
         <Route path="/Register" element={<Register />} />
         <Route path="/:shortUrl" element={<Links />} />
         <Route path="/UserHome/:id" element={<UserHome />} />
-        <Route path="/History" element={<History />} />
+        <Route path="/UserHome/:id/History" element={<History />} />
       </Routes>
     </BrowserRouter>
   );
