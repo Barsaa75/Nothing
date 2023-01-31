@@ -34,7 +34,6 @@ export const getUser = async (req, res) => {
 export const createUser = async (req, res) => {
   try {
     const user = await User.create(req.body);
-    // const token = jwt.sign({ ...user }, "T0PS3CR3T", { expiresIn: "1d" });
     res.status(200).send({
       success: true,
       data: user,
@@ -71,22 +70,3 @@ export const login = async (req, res) => {
     });
   }
 };
-// export const forget = async (req, res) => {
-//   try {
-//     const user = await User.findOne({
-//       username: req.body.username,
-//     });
-
-//     if (req.body.username === user.username) {
-//       res.status(200).send({
-//         success: true,
-//         data: user.password,
-//       });
-//     }
-//   } catch (error) {
-//     res.status(400).send({
-//       success: false,
-//       data: error.message,
-//     });
-//   }
-// };

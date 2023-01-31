@@ -2,7 +2,9 @@ import Link from "../model/link.js";
 
 export const getAlllinks = async (req, res) => {
   try {
-    const link = await Link.find({});
+    // const limit = req.query.limit;
+    // const skip = req.query.skip;
+    // const link = await Link.find({}).limit(limit).skip(skip);
     res.status(200).send({
       data: link,
     });
@@ -17,22 +19,6 @@ export const getAlllinks = async (req, res) => {
 export const createlink = async (req, res) => {
   try {
     const link = await Link.create(req.body);
-    res.status(200).send({
-      success: true,
-      data: link,
-    });
-  } catch (error) {
-    res.status(400).send({
-      success: false,
-      data: error.message,
-    });
-  }
-};
-
-export const deletelink = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const link = await Link.findByIdAndRemove({ _id: id });
     res.status(200).send({
       success: true,
       data: link,
@@ -65,8 +51,8 @@ export const findlink = async (req, res) => {
 
 export const superDelete = async (req, res) => {
   try {
-    const { id } = req.params;
-    const url = await Link.deleteOne({ _id: id });
+    const { _id } = req.params;
+    const url = await Link.findByIdAndRemove(_id);
     res.status(200).send({
       success: true,
       data: url,

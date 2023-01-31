@@ -3,10 +3,10 @@ import Link from "../model/link.js";
 
 export const AdminRole = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const link = await Link.findById(id);
+    const { _id } = req.params;
+    const link = await Link.findById(_id);
     const user = await User.findById(link.user_id);
-    if (user.role === "normal") {
+    if (user.role === "admin") {
       return next();
     } else {
       console.log("admin erh avna uu");
