@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 
-function History({ email }) {
+function History() {
   const [history, setHistory] = useState();
   const { id } = useParams();
   const getUser = async () => {
@@ -17,7 +17,7 @@ function History({ email }) {
   }, []);
   return (
     <div>
-      <LoggedHeader />
+      <LoggedHeader email="asd" />
       <div style={{ display: "flex", gap: "50px" }}>
         <div>
           {history &&
